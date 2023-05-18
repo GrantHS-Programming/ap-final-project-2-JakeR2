@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class ClownScript : MonoBehaviour
 {
-    public Rigidbody2D myRigidbody;
-    public float jumpStrength;
-    public bool touchingPlatform = false;
-    public float moveStrength;
+    private float horizontal;
+    private float speed = 8f;
+    private float jumpingPower = 16f;
+    private bool isFacingRight = true;
+
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -18,25 +22,34 @@ public class ClownScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (touchingPlatform)
+        horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (IsGrounded())
         {
-            myRigidbody.velocity = Vector2.up * jumpStrength;
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            myRigidbody.velocity = Vector2.right * moveStrength;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            myRigidbody.velocity = Vector2.left * moveStrength;
-        }
+
+        Flip();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void FixedUpdate()
     {
-        touchingPlatform = true;
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
-    private void OnCollisionExit2D(Collision2D collision)
+
+    private bool IsGrounded()
     {
-        touchingPlatform = false;
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private void Flip()
+    {
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
     }
 }
