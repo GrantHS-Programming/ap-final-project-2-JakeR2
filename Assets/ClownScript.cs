@@ -24,7 +24,7 @@ public class ClownScript : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (IsGrounded())
+        if (IsGrounded() && rb.velocity.y <= 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }

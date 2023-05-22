@@ -8,10 +8,23 @@ public class PlatformGeneratorScript : MonoBehaviour
     public float spawnRate = 2;
     private float timer = 0;
     public float horizontalOffSet = 10;
+
+    public int numChunks;
+    public int platformsPerChunk;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), Random.Range(i * 10, (i + 1) * 10), 0), transform.rotation);
+        Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), Random.Range(i * 10, (i + 1) * 10), 0), transform.rotation);
+        float leftMostPoint = transform.position.x - horizontalOffSet;
+        float rightMostPoint = transform.position.x + horizontalOffSet;
+        for (int i = 0; i < numChunks; i++)
+        {
+            for(int k = 0; k < platformsPerChunk; k++)
+            {
+                Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), Random.Range(i * 10, (i + 1) * 10), 0), transform.rotation);
+            }
+        }
     }
 
     // Update is called once per frame

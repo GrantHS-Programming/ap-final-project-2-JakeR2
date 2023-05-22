@@ -16,9 +16,9 @@ public class RedPlatformScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += (Vector3.down * downSpeed) * Time.deltaTime;
+        transform.position = transform.position + (Vector3.down * downSpeed) * Time.deltaTime;
 
-        if (transform.position.x < deadZone)
+        if (transform.position.y < deadZone)
         {
             Destroy(gameObject);
         }
