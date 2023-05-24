@@ -14,13 +14,11 @@ public class PlatformGeneratorScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), Random.Range(i * 10, (i + 1) * 10), 0), transform.rotation);
-        Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), Random.Range(i * 10, (i + 1) * 10), 0), transform.rotation);
         float leftMostPoint = transform.position.x - horizontalOffSet;
         float rightMostPoint = transform.position.x + horizontalOffSet;
-        for (int i = 0; i < numChunks; i++)
+        for (float i = 0; i < numChunks; i++)
         {
-            for(int k = 0; k < platformsPerChunk; k++)
+            for(int k = -1; k < platformsPerChunk; k++)
             {
                 Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), Random.Range(i * 10, (i + 1) * 10), 0), transform.rotation);
             }
