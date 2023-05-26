@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class RedPlatformScript : MonoBehaviour
 {
-    public float downSpeed;
-    public float deadZone;
+    private float timer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +15,20 @@ public class RedPlatformScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = transform.position + (Vector3.down * downSpeed) * Time.deltaTime;
-
-        if (transform.position.y < deadZone)
+        if (timer < 100)
         {
-            Destroy(gameObject);
+            timer = timer + Time.deltaTime;
         }
     }
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (timer < 20)
+        {
+            if (collision.tag == "Platform")
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
 }

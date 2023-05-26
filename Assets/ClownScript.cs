@@ -8,6 +8,8 @@ public class ClownScript : MonoBehaviour
     private float speed = 8f;
     private float jumpingPower = 16f;
     private bool isFacingRight = true;
+    public float swapHorizontalAt;
+    public float justUnderSwapHorizontalAt;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -30,6 +32,15 @@ public class ClownScript : MonoBehaviour
         }
 
         Flip();
+
+        if (transform.position.x > swapHorizontalAt)
+        {
+            transform.position = new Vector3(-justUnderSwapHorizontalAt, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x < -swapHorizontalAt)
+        {
+            transform.position = new Vector3(justUnderSwapHorizontalAt, transform.position.y, transform.position.z);
+        }
     }
 
     private void FixedUpdate()

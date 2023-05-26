@@ -11,6 +11,7 @@ public class PlatformGeneratorScript : MonoBehaviour
 
     public int numChunks;
     public int platformsPerChunk;
+    public int chunkSize;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,30 +19,42 @@ public class PlatformGeneratorScript : MonoBehaviour
         float rightMostPoint = transform.position.x + horizontalOffSet;
         for (float i = 0; i < numChunks; i++)
         {
-            for(int k = -1; k < platformsPerChunk; k++)
+            for (int k = -1; k < platformsPerChunk; k++)
             {
-                Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), Random.Range(i * 10, (i + 1) * 10), 0), transform.rotation);
+                Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), Random.Range(i * chunkSize, (i + 1) * chunkSize), 0), transform.rotation);
             }
         }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timer < spawnRate)
+        float leftMostPoint = transform.position.x - horizontalOffSet;
+        float rightMostPoint = transform.position.x + horizontalOffSet;
+        if (timer < 100)
         {
             timer = timer + Time.deltaTime;
         }
-        else
+        if (timer == 50)
         {
-            spawnPlatform();
-            timer = 0;
+            for (float i = 0; i < numChunks; i++)
+            {
+                for (int k = -1; k < platformsPerChunk; k++)
+                {
+                    Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), Random.Range(i * chunkSize, (i + 1) * chunkSize), 0), transform.rotation);
+                }
+            }
         }
-    }
-    void spawnPlatform()
-    {
-        float leftMostPoint = transform.position.x - horizontalOffSet;
-        float rightMostPoint = transform.position.x + horizontalOffSet;
-        Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), transform.position.y, 0), transform.rotation);
+        if (timer == 100)
+        {
+            for (float i = 0; i < numChunks; i++)
+            {
+                for (int k = -1; k < platformsPerChunk; k++)
+                {
+                    Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), Random.Range(i * chunkSize, (i + 1) * chunkSize), 0), transform.rotation);
+                }
+            }
+        }
     }
 }
