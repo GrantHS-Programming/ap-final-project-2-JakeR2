@@ -158,7 +158,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3.09
+  m_GravityScale: 2.54
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 0
@@ -306,10 +306,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platform: {fileID: 2311114029883036068, guid: ee599bdcb5904de4a9c7cc2b41ab1273, type: 3}
   spawnRate: 2
-  horizontalOffSet: 2.5
-  numChunks: 10
-  platformsPerChunk: 15
-  chunkSize: 10
+  horizontalOffSet: 1.6
+  numChunks: 100
+  platformsPerChunk: 3
+  chunkSize: 3
 --- !u!4 &255868677
 Transform:
   m_ObjectHideFlags: 0
@@ -468,7 +468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2311114029883036064, guid: ee599bdcb5904de4a9c7cc2b41ab1273, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2311114029883036064, guid: ee599bdcb5904de4a9c7cc2b41ab1273, type: 3}
       propertyPath: m_LocalPosition.z

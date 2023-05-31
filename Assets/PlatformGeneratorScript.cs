@@ -36,25 +36,10 @@ public class PlatformGeneratorScript : MonoBehaviour
         {
             timer = timer + Time.deltaTime;
         }
-        if (timer == 50)
-        {
-            for (float i = 0; i < numChunks; i++)
-            {
-                for (int k = -1; k < platformsPerChunk; k++)
-                {
-                    Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), Random.Range(i * chunkSize, (i + 1) * chunkSize), 0), transform.rotation);
-                }
-            }
-        }
-        if (timer == 100)
-        {
-            for (float i = 0; i < numChunks; i++)
-            {
-                for (int k = -1; k < platformsPerChunk; k++)
-                {
-                    Instantiate(platform, new Vector3(Random.Range(leftMostPoint, rightMostPoint), Random.Range(i * chunkSize, (i + 1) * chunkSize), 0), transform.rotation);
-                }
-            }
-        }
+    }
+    public void CreatePlatform()
+    {
+        Instantiate(platform, new Vector3(Random.Range((float)(-1.6), (float)(1.6)), Random.Range(0, numChunks * chunkSize), 0), transform.rotation);
+        Debug.Log("jkrebgkjewg");
     }
 }
