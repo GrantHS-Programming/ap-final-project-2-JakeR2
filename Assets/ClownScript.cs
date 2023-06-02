@@ -6,7 +6,7 @@ public class ClownScript : MonoBehaviour
 {
     private float horizontal;
     private float speed = 8f;
-    private float jumpingPower = 16f;
+    private float jumpingPower = 13f;
     private bool isFacingRight = true;
     public float swapHorizontalAt;
     public float justUnderSwapHorizontalAt;
