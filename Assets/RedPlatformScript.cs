@@ -26,6 +26,7 @@ public class RedPlatformScript : MonoBehaviour
         {
             Destroy(gameObject);
             Instantiate(platform, new Vector3(Random.Range((float)(-1.6), (float)(1.6)), Random.Range(0, numChunks * chunkSize), 0), transform.rotation);
+            Instantiate(platform, new Vector3(Random.Range((float)(-1.6), (float)(1.6)), Random.Range(0, numChunks * chunkSize), 0), transform.rotation);
         }
     }
 

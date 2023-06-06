@@ -11,6 +11,10 @@ public class ClownScript : MonoBehaviour
     public float swapHorizontalAt;
     public float justUnderSwapHorizontalAt;
 
+    public float maxHeight = 0;
+    public LogicScript logic;
+    public float scoreMultiplier = 0;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -18,12 +22,17 @@ public class ClownScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y > maxHeight)
+        {
+            maxHeight = transform.position.y;
+            logic.addScore((int)(scoreMultiplier * maxHeight));
+        }
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (IsGrounded() && rb.velocity.y <= 0)
