@@ -15,6 +15,8 @@ public class ClownScript : MonoBehaviour
     public LogicScript logic;
     public float scoreMultiplier = 0;
 
+    public GameObject gameOverScreen;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -32,6 +34,10 @@ public class ClownScript : MonoBehaviour
         {
             maxHeight = transform.position.y;
             logic.addScore((int)(scoreMultiplier * maxHeight));
+        }
+        if (transform.position.y < maxHeight-5)
+        {
+            gameOverScreen.SetActive(true);
         }
         horizontal = Input.GetAxisRaw("Horizontal");
 
